@@ -20,10 +20,10 @@ You can run the code with *Allrun* script and clean it with *Allclean*.
 Here are two examples of vizualisations procuded with this tutorial.
 
 Temperature field in the air and the sphere as well as streamlines (colored by velocity)
-![Image not found](https://github.com/victorpozzobon/simpleThermFoam/blob/main/Postprocessing_1.png?raw=true)
+![Image not found](./Postprocessing_1.png?raw=true)
 
 Inner sphere temperature field
-![Image not found](https://github.com/victorpozzobon/simpleThermFoam/blob/main/Postprocessing_2.png?raw=true)
+![Image not found](./Postprocessing_2.png?raw=true)
 
 ## Contact
 
