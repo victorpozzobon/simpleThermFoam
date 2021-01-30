@@ -1,0 +1,29 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1606+                                |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      transportProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+//- Medium properties
+//					  kg  m  s  K ml  A Ca
+Rhop			Rhop		[  1 -3  0  0  0  0  0 ] 750;		//- Solid density (kg/m3)
+Lambdap		Lambdap	[  1  1 -3 -1  0  0  0 ] 0.1;		//- Solid thermal conductivity (W/m/K == kg m /s^3 /K)
+Cpp			Cpp 		[  0  2 -2 -1  0  0  0 ] 1500;	//- Solid specific heat (J/kg/K == m^2 /s^2 /K)
+
+//- Heat source
+Qp			Qp 		[  1 -1 -3  0  0  0  0 ] 1.26e016;	//- Volumic heat production rate (W/m3)
+Ea 			Ea		[  1  2 -2  0 -1  0  0 ] 99800;	//- Activation energy in J/mol
+RGP 			RGP		[  1  2 -2 -1 -1  0  0 ] 8.314; 	//- Ideal gas constant in J/mol/K => 8.314
+
+// ************************************************************************* //

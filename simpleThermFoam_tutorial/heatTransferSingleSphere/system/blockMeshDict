@@ -1,0 +1,87 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  3.0.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 1;
+
+Hinf -5;
+Hsup 25;
+LatPlus 9.5;
+LatMoins -9.5;
+
+vertices
+(
+    ($LatMoins $LatMoins $Hinf)
+    ($LatPlus  $LatMoins $Hinf)
+    ($LatPlus  $LatPlus  $Hinf)
+    ($LatMoins $LatPlus  $Hinf)
+    ($LatMoins $LatMoins $Hsup)
+    ($LatPlus  $LatMoins $Hsup)
+    ($LatPlus  $LatPlus  $Hsup)
+    ($LatMoins $LatPlus  $Hsup)
+);
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) air (19 19 30) simpleGrading (1 1 1) // For testing purposes
+    //hex (0 1 2 3 4 5 6 7) air (190 190 300) simpleGrading (1 1 1) // Used to produce the vizualisations
+);
+
+edges
+(
+);
+
+boundary
+(
+    Inlet
+    {
+        type patch;
+        faces
+        (
+            (0 3 2 1)
+        );
+    }
+    Outlet
+    {
+        type patch;
+        faces
+        (
+            (4 5 6 7)
+
+        );
+    }
+
+    SymPlanes
+    {
+        type symmetry;
+        faces
+        (
+			(2 6 5 1)
+		    (3 7 6 2)
+		    (1 5 4 0)
+			(0 4 7 3)
+        );
+    }
+    Walls
+    {
+        type wall;
+        faces
+        (
+        );
+    }
+);
+
+// ************************************************************************* //

@@ -1,0 +1,43 @@
+#!/bin/bash
+cd ${0%/*} || exit 1                        # Run from this directory
+. $WM_PROJECT_DIR/bin/tools/RunFunctions    # Tutorial run functions
+
+application=$(getApplication)
+
+# Cleaning a lot of things, some of them may not even exist
+foamListTimes -rm
+rm -rf 0/cellToRegion 0/air 0/plaquettes constant/cellToRegion constant/polyMesh processor* 2>/dev/null
+
+# Extracting features, not useful in the case of the sphere
+# surfaceFeatureExtract
+
+# Creating the mesh
+runApplication blockMesh
+
+runApplication decomposePar -force 
+
+runParallel snappyHexMesh -overwrite
+
+runParallel transformPoints -scale '(0.001 0.001 0.001)'
+
+runParallel splitMeshRegions -cellZonesOnly -overwrite
+
+runParallel renumberMesh -overwrite
+
+runParallel checkMesh -allGeometry -allTopology
+
+# Modifying IC BC
+nbcores=$(getNumberOfProcessors)
+echo $nbcores
+nbcores=$(($nbcores-1))
+for i in `seq 0 $nbcores`; do
+  cp _0org/Ta processor$i/0/air/.
+  cp _0org/p processor$i/0/air/.
+  cp _0org/U processor$i/0/air/.
+  cp _0org/Tp processor$i/0/plaquettes/.
+done
+
+# Running the code
+runParallel ${application}
+
+#------------------------------------------------------------------------------

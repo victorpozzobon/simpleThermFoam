@@ -1,0 +1,56 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1606+                                |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      Ta;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 0 0 1 0 0 0];
+
+internalField   uniform 423; // 273 + 150, for wood self heating
+
+boundaryField
+{
+    Inlet
+    {
+        type            fixedValue;
+        value           uniform 423; // 273 + 150, for wood self heating
+    }
+
+    Outlet
+    {
+        type            zeroGradient;
+    }
+
+    air_to_plaquettes
+    {
+        type            compressible::turbulentTemperatureCoupledBaffleMixed;
+        value           uniform 423;
+        Tnbr 		 Tp;
+        kappaMethod     lookup;
+        kappa           Lambdaa;
+    }
+
+    "(SymPlanes|defaultFaces)"
+    {
+        type            symmetry;
+    }
+    "procBoundary.*"
+    {
+        type            processor;
+        value           uniform 423;
+    }
+}
+
+
+// ************************************************************************* //
