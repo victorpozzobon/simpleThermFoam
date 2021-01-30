@@ -1,9 +1,9 @@
 # simpleThermFoam
 
 Repository hosting the OpenFOAM solver and tutorial associated with the article: 
-[Numerical determination of the volumetric heat transfer coefficient in fixed beds of wood chips. 
+[Numerical determination of the volumetric heat transfer coefficient in fixed beds of wood chips.](https://www.sciencedirect.com/science/article/abs/pii/S1385894720341140) 
 Sassanis, V., Gamet, L., Rolland, M., Ma, R., &amp; Pozzobon, V. (2020). 
-Chemical Engineering Journal, 128009](https://www.sciencedirect.com/science/article/abs/pii/S1385894720341140).
+*Chemical Engineering Journal*, 128009.
 
 It has been tested sucessfully with OpenFOAM 2006 on January 2021.
 
