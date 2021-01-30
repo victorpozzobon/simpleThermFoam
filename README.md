@@ -5,7 +5,7 @@ Repository hosting the OpenFOAM solver and tutorial associated with the article:
 Sassanis, V., Gamet, L., Rolland, M., Ma, R., &amp; Pozzobon, V. (2020). 
 *Chemical Engineering Journal*, 128009.
 
-It has been tested sucessfully with OpenFOAM 2006 on January 2021.
+It has been tested sucessfully with OpenFOAM 2006 (June 2020 version form [OpenFOAM.com](https://www.openfoam.com/)) on January 2021.
 
 ## Structure
 
